@@ -1,7 +1,5 @@
 #include "arvore.h"
 
-#include <iostream>
-
 Node::Node() {
     this->elemento = '!'; // Nodes vazios denotados com '!'
     this->esq = nullptr;
@@ -19,12 +17,21 @@ Arvore::Arvore() {
     this->raiz = nullptr;
 }
 
+Arvore::~Arvore() {
+     // O destrutor de Node garante que, ao chamar o destrutor da raiz, toda a árvore será deletada
+     // recursivamente.
+    if (this->raiz != nullptr)
+        delete this->raiz;
+}
+
 void Arvore::inserir_em_endereco(char elemento, std::string endereco) {
     if (this->raiz == nullptr)
         this->raiz = new Node();
-    
+
     Node* atual = this->raiz;
 
+    // Percorre a árvore de acordo com cada caractere do endereço, criando Nodes vazios pelo
+    // caminho se necessário.
     for (char& c : endereco) {
         if (c == '.') {
             if (atual->esq == nullptr)
