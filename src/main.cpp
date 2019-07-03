@@ -37,5 +37,9 @@ int main(int argc, char* argv[]) {
         std::cout << std::endl;
     }
 
+    // Exibir a árvore caso seja pedido.
+    if (argc >= 2 && std::string(argv[1]) == "-a")
+        arvore.imprimir_arvore();
+
     return 0;
 }

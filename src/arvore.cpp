@@ -1,4 +1,6 @@
 #include "arvore.h"
+#include <string>
+#include <iostream>
 
 Node::Node() {
     this->elemento = '!'; // Nodes vazios denotados com '!'
@@ -11,6 +13,19 @@ Node::~Node() {
         delete this->esq;
     if (this->dir != nullptr)
         delete this->dir;
+}
+
+// Esse método imprime o elemento e endereço do Node e se chama recursivamente nos filhos do Node.
+void Node::imprimir_pre_ordem(std::string acumulador) {
+    if (this->elemento != '!')
+        std::cout << this->elemento << " " << acumulador << std::endl;
+    
+    // O acumulador deve sempre ser o endereço do Node no qual o método está sendo chamado, então
+    // acrescentamos um ponto para o filho da esquerda e um traço para o da direita.
+    if (this->esq != nullptr)
+        this->esq->imprimir_pre_ordem(acumulador + ".");
+    if (this->dir != nullptr)
+        this->dir->imprimir_pre_ordem(acumulador + "-");
 }
 
 Arvore::Arvore() {
@@ -61,4 +76,8 @@ char Arvore::buscar_elemento(std::string endereco) {
     }
 
     return atual->elemento;
+}
+
+void Arvore::imprimir_arvore() {
+    this->raiz->imprimir_pre_ordem("");
 }
