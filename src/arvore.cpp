@@ -39,3 +39,19 @@ void Arvore::inserir_em_endereco(char elemento, std::string endereco) {
 
     atual->elemento = elemento;
 }
+
+char Arvore::buscar_elemento(std::string endereco) {
+    Node* atual = this->raiz;
+
+    for (char& c : endereco) {
+        if (c == '.')
+            atual = atual->esq;
+        else if (c == '-')
+            atual = atual->dir;
+
+        if (atual == nullptr)
+            return '!'; // Indica que o endereço não corresponde a nenhum elemento na árvore.
+    }
+
+    return atual->elemento;
+}

@@ -20,6 +20,8 @@ public:
     ~Arvore() {}
 
     void inserir_em_endereco(char elemento, std::string endereco);
+
+    char buscar_elemento(std::string endereco);
 };
 
 

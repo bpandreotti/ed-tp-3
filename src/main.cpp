@@ -10,5 +10,9 @@ int main(int argc, char* argv[]) {
     arv.inserir_em_endereco('B', "-...");
     arv.inserir_em_endereco('C', "-.-.");
 
+    std::cout << arv.buscar_elemento("..-.") << " "
+              << arv.buscar_elemento("-...") << " "
+              << arv.buscar_elemento("-.-.") << std::endl;
+
     return 0;
 }
