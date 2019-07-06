@@ -1,12 +1,12 @@
 CC := g++
 CFLAGS := -g -Wall -std=c++11
 
-TARGET := bin/main
-SRCDIR := src
+TARGET := main
+SRCDIR := .
 OBJDIR := obj
 
 # Encontra todos os arquivos .cpp no diretorio src
-SOURCES := $(shell find $(SRCDIR) -type f -name *.cpp)
+SOURCES := $(shell find $(SRCDIR) -type f -name '*.cpp')
 
 # Descobre quais são os arquivos .o do projeto, substituindo o
 # diretório e a extensão dos arquivos .cpp encontrados
@@ -15,7 +15,6 @@ OBJECTS := $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SOURCES))
 
 # Linka os arquivos .o para formar o binário final
 $(TARGET): $(OBJECTS)
-	@mkdir -p $(@D) # Criar diretório caso necessário
 	@$(CC) $^ -o $@
 
 # Compila cada arquivo .cpp para seu .o respectivo

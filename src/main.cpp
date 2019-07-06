@@ -20,18 +20,17 @@ int main(int argc, char* argv[]) {
     std::string linha;
     // Lê cada linha da entrada padrão sequencialmente.
     while (std::getline(std::cin, linha)) {
-        std::stringstream sstream(linha);
-        std::string s;
-
+        std::stringstream sstream_linha(linha);
+        std::string token;
         // Para cada linha da entrada, divide ela em tokens separados por espaços. Como definido
         // pela especificação, esses tokens serão: ou a representação em morse de uma letra, e.g.
         // "..-.", ou o separador de palavras, "/". No primeiro caso, decodificamos a letra
         // buscando-a na árvore. No segundo caso, imprimimos " ".
-        while (std::getline(sstream, s, ' ')) {
-            if (s == "/")
+        while (std::getline(sstream_linha, token, ' ')) {
+            if (token == "/")
                 std::cout << " ";
             else
-                std::cout << arvore.buscar_elemento(s);
+                std::cout << arvore.buscar_elemento(token);
         }
 
         std::cout << std::endl;
